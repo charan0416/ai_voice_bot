@@ -1,0 +1,282 @@
+/* static/style.css */
+
+/* Import the chosen Google Font */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e0e0e0; /* Softer background grey */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.chat-container {
+    background-color: #ffffff; /* Clean white background */
+    border-radius: 12px; /* Softer rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    width: 100%;
+    max-width: 650px; /* Slightly wider container */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 600px; /* Increased minimum height */
+    max-height: 95vh; /* Allows slight space around on larger screens */
+}
+
+/* Styled Header */
+.chat-header {
+    background-color: #007bff; /* Primary brand color */
+    color: white;
+    padding: 15px 20px; /* More padding */
+    margin: 0;
+    font-size: 1.2em; /* Slightly smaller heading */
+    text-align: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Adjusted Chat Box padding */
+.chat-box {
+    flex-grow: 1;
+    padding: 20px; /* More padding */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Increased space between messages */
+    /* Optional background for chat area if not white */
+    /* background-color: #f9f9f9; */
+}
+
+/* Message container */
+.message {
+    /* These apply to the container divs appended by JS */
+    /* We will put content inside .message-bubble for styling */
+    display: flex; /* Use flex to align bubble */
+}
+
+/* Message bubble styling */
+.message-bubble {
+    padding: 10px 15px; /* Padding inside the bubble */
+    border-radius: 20px; /* Rounded bubble shape */
+    max-width: 85%; /* Limit bubble width */
+    word-wrap: break-word;
+    font-size: 1em;
+    line-height: 1.4; /* Improved readability */
+    position: relative; /* Needed for potential 'arrow' style, though not adding here */
+}
+
+/* Styling for user message bubbles */
+.user-message {
+    justify-content: flex-end; /* Align bubble to the right */
+}
+.user-message .message-bubble {
+    background-color: #007bff; /* Match header color */
+    color: white; /* White text on color bubble */
+    border-bottom-right-radius: 5px; /* Flatten corner towards alignment side */
+    /* Add subtle arrow style */
+    /* Not adding complex pseudo-element arrow for basic example */
+}
+
+
+/* Styling for bot message bubbles */
+.bot-message {
+    justify-content: flex-start; /* Align bubble to the left */
+}
+.bot-message .message-bubble {
+    background-color: #e9e9eb; /* Light grey background */
+    color: #333; /* Dark grey text */
+     border-bottom-left-radius: 5px; /* Flatten corner towards alignment side */
+     /* Add subtle arrow style */
+     /* Not adding complex pseudo-element arrow for basic example */
+}
+
+/* Input area styling */
+.input-area {
+    display: flex;
+    padding: 15px 20px; /* Match horizontal padding of header/chatbox */
+    border-top: 1px solid #e0e0e0; /* Lighter border */
+    flex-shrink: 0;
+    gap: 10px;
+    align-items: center;
+    background-color: #f8f8f8; /* Very light grey background */
+}
+
+.input-area input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px; /* More padding */
+    border: 1px solid #ccc;
+    border-radius: 20px; /* Match bubble curvature */
+    font-size: 1em;
+    box-sizing: border-box;
+    outline: none; /* Remove default outline */
+    transition: border-color 0.2s ease; /* Smooth focus effect */
+}
+
+.input-area input[type="text"]:focus {
+    border-color: #007bff; /* Highlight on focus */
+}
+
+/* Styling for buttons within the input area */
+.input-area button {
+    width: 44px; /* Fixed width for consistent icon size */
+    height: 44px; /* Fixed height */
+    display: flex; /* Use flex to center icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 0; /* Remove default padding */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Round button shape */
+    cursor: pointer;
+    font-size: 1.2em; /* Icon size */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0; /* Prevent shrinking */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Send Button */
+#send-button {
+    background-color: #007bff;
+}
+
+#send-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Voice Button */
+#voice-button {
+    background-color: #28a745; /* Green */
+}
+
+/* Style when voice button is active (listening) */
+#voice-button.listening {
+    background-color: #dc3545; /* Red */
+    animation: pulse 1.5s infinite; /* Add pulse animation when listening */
+}
+
+/* Animation for listening state */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); /* Start green pulse */
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+#voice-button.listening:hover:not(:disabled) {
+     background-color: #c82333; /* Darker red on hover */
+     animation: none; /* Stop pulse on hover if desired */
+}
+
+
+#voice-button:hover:not(:disabled) {
+    background-color: #218838; /* Darker green on hover */
+}
+
+
+.input-area button:disabled {
+    background-color: #cccccc; /* Greyed out */
+    cursor: not-allowed;
+    box-shadow: none; /* No shadow when disabled */
+     animation: none; /* No pulse when disabled */
+}
+
+/* Optional: Typing indicator styling */
+.message-bubble.typing {
+    font-style: italic;
+    color: #555;
+}
+
+
+/* Adjust layout for very small screens if necessary */
+@media (max-width: 500px) {
+    .chat-container {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+         max-height: 100vh; /* Allow full height */
+    }
+     body {
+        padding: 0;
+     }
+    .chat-header, .input-area {
+        padding-left: 15px; /* Slightly less horizontal padding */
+        padding-right: 15px;
+    }
+    .chat-box {
+         padding: 15px; /* Slightly less horizontal padding */
+    }
+
+    .input-area {
+        flex-direction: column; /* Stack input elements vertically */
+        align-items: stretch;
+        gap: 8px; /* Smaller gap */
+    }
+    .input-area input[type="text"] {
+         border-radius: 8px; /* Slightly less rounded on smaller screens */
+         padding: 10px 12px; /* Adjusted padding */
+         width: 100%; /* Ensure full width */
+    }
+
+     /* Make buttons take up their share */
+    .input-area #send-button,
+    .input-area #voice-button {
+        width: auto; /* Allow button width to adjust */
+        flex-grow: 1; /* Let them grow equally */
+        border-radius: 8px; /* Less rounded */
+        padding: 12px; /* Equal padding */
+        font-size: 1em; /* Slightly smaller icon */
+         height: auto; /* Height adjust */
+    }
+     /* Vertically stack the icon and text inside the button for mobile */
+     .input-area button i {
+          display: block; /* Stack the icon */
+          margin-bottom: 4px; /* Space below icon */
+          font-size: 1.2em; /* Maintain icon size */
+     }
+      .input-area button {
+           flex-direction: column; /* Stack items inside button */
+      }
+
+
+}
+
+/* Styles for smaller icon+text buttons in mobile view */
+@media (max-width: 500px) {
+    .input-area button {
+        flex-direction: row; /* Default flex is row */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        gap: 5px; /* Add space between icon and text */
+        height: auto; /* Let height adjust based on content */
+    }
+    /* Keep the original fixed size style for desktop view */
+    @media (min-width: 501px) {
+       .input-area button {
+            width: 44px;
+            height: 44px;
+             flex-direction: column; /* Stack vertically, mostly to ensure text isn't fighting icon */
+             padding: 0; /* Remove default padding */
+       }
+       .input-area button i {
+             margin-bottom: 0; /* Remove mobile margin */
+             display: block; /* Icon as block element */
+       }
+    }
+
+}
+
+/* Handle typing indicator */
+.message.bot-message .message-bubble.typing {
+     font-style: italic;
+    color: #555; /* Match optional original styling */
+    background-color: #e0e0e0; /* Slightly darker background for clarity */
+}

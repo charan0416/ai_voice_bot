@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Voice Chatbot</title>
+
+    <!-- Google Font: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h2>Agentic Voice Chat</h2>
+        </header>
+        <div id="chat-box" class="chat-box">
+            <!-- Initial bot message -->
+            <div class="message bot-message initial-message">
+                <div class="message-bubble">
+                    Hello! Ask me anything using your voice or text. I can try to simulate searching if needed (try asking "what is the capital of France?").
+                </div>
+            </div>
+             <!-- Chat messages will be appended here by JavaScript -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button" title="Send Message">
+                <i class="fas fa-paper-plane"></i> <!-- Send icon -->
+            </button>
+            <!-- Button to toggle voice input -->
+            <button id="voice-button" aria-label="Toggle Voice Input" title="Start Speaking">
+                 <i class="fas fa-microphone"></i> <!-- Mic icon -->
+                 <!-- Consider adding text visually hidden for screen readers -->
+            </button>
+        </div>
+    </div>
+
+    <!-- Link to your custom JavaScript file -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
